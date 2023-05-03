@@ -1,8 +1,8 @@
 # 餐廳清單 1.0
 
-![Index page about Restaurant List](./public/image/snapshot1.png)
-![Show page about Restaurant List](./public/image/snapshot2.png)
-![Search page about Restaurant List](./public/image/snapshot3.png)
+![Index page about Restaurant List](./public/image/snapshot1.jpg)
+![Show page about Restaurant List](./public/image/snapshot2.jpg)
+![Search page about Restaurant List](./public/image/snapshot3.jpg)
 
 ## 介紹
 
