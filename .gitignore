@@ -1,2 +1,18 @@
 # 寫入不想追蹤的路徑名稱
-/node_modules
+# Mac OS 
+.DS_Store*
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# npm
+node_modules
+*.log
+*.gz
+
+# dotenv
+.env
