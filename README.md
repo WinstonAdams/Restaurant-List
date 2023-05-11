@@ -1,4 +1,4 @@
-# 餐廳清單 1.0
+# 餐廳清單 2.0
 
 ![Index page about Restaurant List](./public/image/snapshot1.jpg)
 ![Show page about Restaurant List](./public/image/snapshot2.jpg)
