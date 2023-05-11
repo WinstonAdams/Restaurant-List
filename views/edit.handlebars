@@ -1,0 +1,73 @@
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 col-md-10 mx-auto">
+      <form action="/restaurant/{{ restaurant._id }}/edit" method="POST">
+        <p class="mb-1">
+          <span class="text-secondary">
+            餐廳名稱：
+          </span>
+          <input type="text" name="name" placeholder="name" value="{{restaurant.name}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            餐廳名稱(英文)：
+          </span>
+          <input type="text" name="name_en" placeholder="name_en" value="{{restaurant.name_en}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            類別：
+          </span>
+          <input type="text" name="category" placeholder="category" value="{{restaurant.category}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            圖片(URL)：
+          </span>
+          <input type="text" name="image" placeholder="image" value="{{restaurant.image}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            地址：
+          </span>
+          <input type="text" name="location" placeholder="location" value="{{restaurant.location}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            電話：
+          </span>
+          <input type="text" name="phone" placeholder="phone" value="{{restaurant.phone}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            Google Map：
+          </span>
+          <input type="text" name="google_map" placeholder="google_map" value="{{restaurant.google_map}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            評分：
+          </span>
+          <input type="text" name="rating" placeholder="rating" value="{{restaurant.rating}}">
+        </p>
+
+        <p class="mb-1">
+          <span class="text-secondary">
+            簡介：
+          </span>
+          <input type="text" name="description" placeholder="description" value="{{restaurant.description}}">
+        </p>
+
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+        <a href="/"><button type="button" class="btn btn-sm btn-primary">back</button></a>
+      </form>
+    </div>
+  </div>
+</div>

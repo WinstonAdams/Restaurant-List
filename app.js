@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const Restaurant = require('./models/restaurant')
 const e = require('express')
+const restaurant = require('./models/restaurant')
 
 const app = express()
 
@@ -56,9 +57,9 @@ app.post('/restaurants', (req, res) => {
 })
 
 //- 瀏覽一家餐廳的詳細資訊
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant_id = req.params.restaurant_id
-  Restaurant.findById(restaurant_id)
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -86,6 +87,23 @@ app.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
+//- 進入 edit 頁面
+app.get("/restaurant/:id/edit", (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .lean()
+    .then(restaurant => res.render('edit', { restaurant }))
+    .catch(error => console.log(error))
+})
+
+//- 修改資料 (實際上要使用 PUT)
+app.post('/restaurant/:id/edit', (req, res) => {
+  const id = req.params.id
+  // 找到特定資料並更新
+  Restaurant.findByIdAndUpdate(id, req.body)
+    .then(() => res.redirect(`/restaurants/${id}`))
+    .catch(error => console.log(error))
+})
 
 
 
