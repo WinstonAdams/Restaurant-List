@@ -96,7 +96,7 @@ app.get("/restaurant/:id/edit", (req, res) => {
     .catch(error => console.log(error))
 })
 
-//- 修改資料 (實際上要使用 PUT)
+//- 修改餐廳 (實際上要使用 PUT)
 app.post('/restaurant/:id/edit', (req, res) => {
   const id = req.params.id
   // 找到特定資料並更新
@@ -105,11 +105,14 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
-
-
-
-
+//- 刪除餐廳
+app.post("/restaurant/:id/delete", (req, res) => {
+  const id = req.params.id
+  Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 
 

@@ -1,13 +1,59 @@
-<form action="/restaurants" method="POST">
-  <input type="text" name="name" placeholder="name">
-  <input type="text" name="name_en" placeholder="name_en">
-  <input type="text" name="category" placeholder="category">
-  <input type="text" name="image" placeholder="image">
-  <input type="text" name="location" placeholder="location">
-  <input type="text" name="phone" placeholder="phone">
-  <input type="text" name="google_map" placeholder="google_map">
-  <input type="number" name="rating" placeholder="rating">
-  <input type="text" name="description" placeholder="description">
+<div class="container-sm my-3">
+  <form action="/restaurants" method="POST">
+    <div class="my-1">
+      <span class="text-secondary">餐廳名稱：</span>
+      <input type="text" name="name" placeholder="name" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        餐廳名稱(英文)：
+      </span>
+      <input type="text" name="name_en" placeholder="name_en" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        類別：
+      </span>
+      <input type="text" name="category" placeholder="category" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        圖片(URL)：
+      </span>
+      <input type="text" name="image" placeholder="image" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        地址：
+      </span>
+      <input type="text" name="location" placeholder="location" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        電話：
+      </span>
+      <input type="text" name="phone" placeholder="phone" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        Google Map：
+      </span>
+      <input type="text" name="google_map" placeholder="google_map" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        評分：
+      </span>
+      <input type="number" name="rating" placeholder="rating" required="true">
+    </div>
+    <div class="my-1">
+      <span class="text-secondary">
+        簡介：
+      </span>
+      <input type="text" name="description" placeholder="description" required="true">
+    </div>
 
-  <button type="submit">Create</button>
-</form>
+    <button type="submit" class="btn btn-sm btn-primary">Create</button>
+    <a href="/"><button type="button" class="btn btn-sm btn-primary">back</button></a>
+  </form>
+</div>
