@@ -1,11 +1,13 @@
+//* 載入外部的套件
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
-const Restaurant = require('./models/restaurant')
-const restaurant = require('./models/restaurant')
+//* 載入自己設定的檔案
+// 載入路由器 (自動尋找資料夾中的 index.js)
+const routes = require('./routes')
 
 const app = express()
 
@@ -36,86 +38,11 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// 設定每一筆 request 都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
 
-//- 根目錄，瀏覽全部所有餐廳
-app.get('/', (req, res) => {
-  Restaurant.find()
-    .lean()
-    .then(restaurantsList => res.render('index', { restaurantsList }))
-    .catch(error => console.log(error))
-})
-
-//- 進入新增餐廳頁面
-app.get('/restaurants/new', (req, res) => {
-  res.render('new')
-})
-
-//- 新增餐廳
-app.post('/restaurants', (req, res) => {
-  Restaurant.create(req.body)
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
-//- 瀏覽一家餐廳的詳細資訊
-app.get('/restaurants/:id', (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
-    .lean()
-    .then(restaurant => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
-})
-
-//- 搜尋餐廳
-app.get('/search', (req, res) => {
-  const keywords = req.query.keyword
-  const keyword = req.query.keyword.trim().toLowerCase()
-
-  // 若 keyword 沒有輸入內容，重新導向 / 路由(根目錄)
-  if (!keyword) {
-    return res.redirect('/')
-  }
-
-  Restaurant.find()
-    .lean()
-    .then(restaurants => {
-      const restaurantFiltered = restaurants.filter(
-        restaurant =>
-          restaurant.name.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword))
-
-      res.render('index', { restaurantsList: restaurantFiltered, keywords })
-    })
-    .catch(error => console.log(error))
-})
-
-//- 進入 edit 頁面
-app.get("/restaurant/:id/edit", (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
-    .lean()
-    .then(restaurant => res.render('edit', { restaurant }))
-    .catch(error => console.log(error))
-})
-
-//- 修改餐廳 (實際上要使用 PUT)
-app.put('/restaurant/:id', (req, res) => {
-  const id = req.params.id
-  // 找到特定資料並更新
-  Restaurant.findByIdAndUpdate(id, req.body)
-    .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
-})
-
-//- 刪除餐廳
-app.delete("/restaurant/:id", (req, res) => {
-  const id = req.params.id
-  Restaurant.findById(id)
-    .then(restaurant => restaurant.deleteOne())
-    .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
-})
-
+// 將 request 導入路由器
+app.use(routes)
 
 
 app.listen(port, () => {
