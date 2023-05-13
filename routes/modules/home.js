@@ -7,6 +7,7 @@ const Restaurant = require('../../models/restaurant')
 router.get('/', (req, res) => {
   Restaurant.find()
     .lean()
+    .sort({ _id: 'asc' }) // 排序，根據 _id 升冪排序，(降冪排序用 'desc')
     .then(restaurantsList => res.render('index', { restaurantsList }))
     .catch(error => console.log(error))
 })
