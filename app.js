@@ -2,8 +2,9 @@ const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+
 const Restaurant = require('./models/restaurant')
-const e = require('express')
 const restaurant = require('./models/restaurant')
 
 const app = express()
@@ -35,6 +36,7 @@ app.use(express.static('public'))
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(methodOverride('_method'))
 
 //- 根目錄，瀏覽全部所有餐廳
 app.get('/', (req, res) => {
@@ -97,7 +99,7 @@ app.get("/restaurant/:id/edit", (req, res) => {
 })
 
 //- 修改餐廳 (實際上要使用 PUT)
-app.post('/restaurant/:id/edit', (req, res) => {
+app.put('/restaurant/:id', (req, res) => {
   const id = req.params.id
   // 找到特定資料並更新
   Restaurant.findByIdAndUpdate(id, req.body)
@@ -106,10 +108,10 @@ app.post('/restaurant/:id/edit', (req, res) => {
 })
 
 //- 刪除餐廳
-app.post("/restaurant/:id/delete", (req, res) => {
+app.delete("/restaurant/:id", (req, res) => {
   const id = req.params.id
   Restaurant.findById(id)
-    .then(restaurant => restaurant.remove())
+    .then(restaurant => restaurant.deleteOne())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
