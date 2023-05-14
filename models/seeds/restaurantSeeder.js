@@ -4,11 +4,12 @@ const db = require('../../config/mongoose')
 const restaurantSeeds = require('../../restaurant.json').results
 
 db.once('open', () => {
-  restaurantSeeds.forEach(restaurant => {
-    Restaurant.create(restaurant)
-      .then(() => console.log('success!'))
-      .catch(error => console.log(error))
-  })
+  Restaurant.create(restaurantSeeds)
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
+    .finally(() => db.close()) // 執行完後關閉db connection
 
   console.log('done!')
 })

@@ -12,7 +12,10 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   Restaurant.create(req.body)
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 //- 瀏覽一家餐廳的詳細資訊
@@ -21,7 +24,10 @@ router.get('/:id', (req, res) => {
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('show', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 //- 進入 edit 頁面
@@ -30,7 +36,10 @@ router.get("/:id/edit", (req, res) => {
   Restaurant.findById(id)
     .lean()
     .then(restaurant => res.render('edit', { restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 //- 修改餐廳 (實際上要使用 PUT)
@@ -39,7 +48,10 @@ router.put('/:id', (req, res) => {
   // 找到特定資料並更新
   Restaurant.findByIdAndUpdate(id, req.body)
     .then(() => res.redirect(`/restaurants/${id}`))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 //- 刪除餐廳
@@ -48,7 +60,10 @@ router.delete("/:id", (req, res) => {
   Restaurant.findById(id)
     .then(restaurant => restaurant.deleteOne())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 module.exports = router

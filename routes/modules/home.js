@@ -9,7 +9,10 @@ router.get('/', (req, res) => {
     .lean()
     .sort({ _id: 'asc' }) // 排序，根據 _id 升冪排序，(降冪排序用 'desc')
     .then(restaurantsList => res.render('index', { restaurantsList }))
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 //- 搜尋餐廳
@@ -19,9 +22,9 @@ router.get('/search', (req, res) => {
   const keywordLowerCase = req.query.keyword.trim().toLowerCase()
 
   // 若 keyword 沒有輸入內容，重新導向 / 路由(根目錄)
-  // if (!keyword) {
-  //   return res.redirect('/')
-  // }
+  if (!keyword) {
+    return res.redirect('/')
+  }
 
   Restaurant.find()
     .lean()
@@ -33,7 +36,10 @@ router.get('/search', (req, res) => {
 
       res.render('index', { restaurantsList: restaurantFiltered, keyword })
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 module.exports = router
