@@ -1,4 +1,4 @@
-# 餐廳清單 1.0
+# 餐廳清單 2.0
 
 ![Index page about Restaurant List](./public/image/snapshot1.jpg)
 ![Show page about Restaurant List](./public/image/snapshot2.jpg)
@@ -12,6 +12,9 @@
 
 - 瀏覽所有餐廳
 - 查看餐廳的詳細資訊
+- 新增餐廳
+- 修改餐廳的資訊
+- 刪除餐廳
 - 連結餐廳的地址至 Google 地圖
 - 搜尋特定餐廳或類別
 
