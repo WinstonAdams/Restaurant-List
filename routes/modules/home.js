@@ -34,7 +34,11 @@ router.get('/search', (req, res) => {
         restaurant =>
           restaurant.name.toLowerCase().includes(keywordLowerCase) || restaurant.category.toLowerCase().includes(keywordLowerCase))
 
-      res.render('index', { restaurantsList: restaurantFiltered, keyword })
+      if (restaurantFiltered.length) {
+        res.render('index', { restaurantsList: restaurantFiltered, keyword })
+      } else {
+        res.render('searchNoResult', { keyword })
+      }
     })
     .catch(error => {
       console.log(error)
