@@ -14,22 +14,24 @@ router.get('/', (req, res) => {
 
 //- 搜尋餐廳
 router.get('/search', (req, res) => {
-  const keywords = req.query.keyword
-  const keyword = req.query.keyword.trim().toLowerCase()
+  // sort 被賦值為 dropdown box 選擇到的元素的 value
+  const { keyword, sort } = req.query
+  const keywordLowerCase = req.query.keyword.trim().toLowerCase()
 
   // 若 keyword 沒有輸入內容，重新導向 / 路由(根目錄)
-  if (!keyword) {
-    return res.redirect('/')
-  }
+  // if (!keyword) {
+  //   return res.redirect('/')
+  // }
 
   Restaurant.find()
     .lean()
+    .sort(sort)
     .then(restaurants => {
       const restaurantFiltered = restaurants.filter(
         restaurant =>
-          restaurant.name.toLowerCase().includes(keyword) || restaurant.category.toLowerCase().includes(keyword))
+          restaurant.name.toLowerCase().includes(keywordLowerCase) || restaurant.category.toLowerCase().includes(keywordLowerCase))
 
-      res.render('index', { restaurantsList: restaurantFiltered, keywords })
+      res.render('index', { restaurantsList: restaurantFiltered, keyword })
     })
     .catch(error => console.log(error))
 })
