@@ -14,7 +14,16 @@ const port = 3000
 
 const app = express()
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.engine('handlebars', exphbs({
+  defaultLayout: 'main',
+  //! 自定義 handlebars helpers 
+  helpers: {
+    // {{ equal value1 value2 }} --> 判斷 value1 value2 是否相同 (true or false)
+    equal: (value1, value2) => {
+      return value1 === value2
+    }
+  }
+}))
 app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))

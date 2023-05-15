@@ -14,10 +14,11 @@
 
           <div class="input-group">
             <select class="form-select" id="sort" name="sort">
-              <option value="name_en">A > Z</option>
-              <option value="-name_en">Z > A</option>
-              <option value="rating">評分(低至高)</option>
-              <option value="-rating">評分(高至低)</option>
+              <option>請選擇排序方式</option>
+              <option value="name_en" {{#if (equal sort "name_en" )}}selected{{/if}}>A > Z</option>
+              <option value="-name_en" {{#if (equal sort "-name_en" )}}selected{{/if}}>Z > A</option>
+              <option value="rating" {{#if (equal sort "rating" )}}selected{{/if}}>評分(低至高)</option>
+              <option value="-rating" {{#if (equal sort "-rating" )}}selected{{/if}}>評分(高至低)</option>
             </select>
           </div>
 
