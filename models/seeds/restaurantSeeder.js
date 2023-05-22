@@ -4,7 +4,7 @@ const db = require('../../config/mongoose')
 const restaurantSeeds = require('../../restaurant.json').results
 
 db.once('open', () => {
-  Restaurant.create(restaurantSeeds)
+  Restaurant.create(restaurantSeeds) // .create 可以傳入一個陣列，一次新增多筆資料
     .catch(error => {
       console.log(error)
       res.render('errorPage', { errorMsg: error.message })

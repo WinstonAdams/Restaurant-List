@@ -5,7 +5,7 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
 
-// 設定連線到 mongoose (MONGODB_URL 設定在 .env 檔案)
+// 設定連線到 MongoDB (MONGODB_URL 設定在 .env 檔案)
 mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // 取得資料庫連線狀態
