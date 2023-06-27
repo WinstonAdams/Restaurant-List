@@ -18,7 +18,7 @@
 
 ## 開始使用
 
-1. 請先確認有安裝 node.js 與 npm
+1. 請先確認有安裝 Node.js 與 npm
 2. 開啟終端機，到欲存放專案的路徑下，將專案 clone 到本地，輸入：
 
    ```bash
@@ -31,7 +31,7 @@
    npm install
    ```
    
-4. 連線到 MongoDB，新增 .env 檔案：
+4. 連線到 MongoDB，新增 .env 檔案，檔案中輸入：
 
    ```bash
    MONGODB_URL = <Your own MongoDB connection URL>
