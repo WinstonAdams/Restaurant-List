@@ -30,20 +30,32 @@
    ```bash
    npm install
    ```
+   
+4. 連線到 MongoDB，新增 .env 檔案：
 
-4. 執行專案，輸入：
+   ```bash
+   MONGODB_URL = <Your own MongoDB connection URL>
+   ```
+   
+5. 載入種子資料，輸入：
+
+   ```bash
+   npm run seed
+   ```
+
+6. 執行專案，輸入：
 
    ```bash
    npm run dev
    ```
 
-5. 在終端機看見此行訊息代表順利執行
+7. 在終端機看見此行訊息代表順利執行
 
    ```bash
    Listening on http://localhost:3000
    ```
    
-6. 打開瀏覽器輸入以下網址
+8. 打開瀏覽器輸入以下網址
 
    ```bash
    http://localhost:3000
