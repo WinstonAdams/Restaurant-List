@@ -1,7 +1,6 @@
 //* 載入外部的套件
 const express = require('express')
 const exphbs = require('express-handlebars')
-const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 
 //* 載入自己設定的檔案
@@ -28,7 +27,7 @@ app.set('view engine', 'handlebars')
 
 app.use(express.static('public'))
 
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }))
 
 // 設定每一筆 request 都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))

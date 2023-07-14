@@ -42,7 +42,7 @@ router.get("/:id/edit", (req, res) => {
     })
 })
 
-//- 修改餐廳 (實際上要使用 PUT)
+//- 修改餐廳
 router.put('/:id', (req, res) => {
   const id = req.params.id
   // 找到特定資料並更新
