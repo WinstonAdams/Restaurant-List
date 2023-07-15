@@ -2,6 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 //* 載入自己設定的檔案
 // 載入路由器 (自動尋找資料夾中的 index.js)
@@ -24,6 +25,12 @@ app.engine('handlebars', exphbs({
   }
 }))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+  secret: 'ThisIsMySecret',
+  resave: false,
+  saveUninitialized: true,
+}))
 
 app.use(express.static('public'))
 
