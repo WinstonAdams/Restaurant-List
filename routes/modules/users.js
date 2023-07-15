@@ -5,12 +5,20 @@ const User = require('../../models/users')
 const passport = require('passport')
 
 router.get('/login', (req, res) => {
-  res.render('login')
+  const email = req.flash('email')
+  const password = req.flash('password')
+
+  res.render('login', { email, password })
 })
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/users/login',
+router.post('/login', (req, res, next) => {
+  req.flash('email', req.body.email)
+  req.flash('password', req.body.password)
+  next()
+},
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
 }))
 
 router.get('/logout', (req, res) => {
