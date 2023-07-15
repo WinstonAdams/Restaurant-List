@@ -9,6 +9,8 @@ const session = require('express-session')
 const routes = require('./routes')
 // 載入 mongoose 相關的程式碼 (資料庫連線設定)
 require('./config/mongoose')
+// 載入 passport 相關的程式碼
+const usePassport = require('./config/passport')
 
 const PORT = process.env.PORT || 3000
 
@@ -38,6 +40,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // 設定每一筆 request 都會透過 methodOverride 進行前置處理
 app.use(methodOverride('_method'))
+
+usePassport(app)
 
 // 將 request 導入路由器
 app.use(routes)
