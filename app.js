@@ -4,6 +4,9 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 
 //* 載入自己設定的檔案
 // 載入路由器 (自動尋找資料夾中的 index.js)
@@ -13,7 +16,7 @@ require('./config/mongoose')
 // 載入 passport 相關的程式碼
 const usePassport = require('./config/passport')
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 
 const app = express()
 
@@ -30,7 +33,7 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true,
 }))
