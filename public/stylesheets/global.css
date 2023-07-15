@@ -50,7 +50,7 @@ header {
 }
 
 .card {
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .card .card-img-top {
@@ -80,6 +80,14 @@ header {
 
 .btn-link {
   text-decoration: none;
+}
+
+.login-panel,
+.register-panel {
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: -250px;
+  padding: 30px 50px;
 }
 
 @media screen and (max-width: 992px) {
