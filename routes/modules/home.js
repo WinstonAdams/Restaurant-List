@@ -5,7 +5,8 @@ const Restaurant = require('../../models/restaurant')
 
 //- 首頁 (根目錄)，瀏覽全部所有餐廳
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const UserId = req.user._id
+  Restaurant.find({ UserId })
     .lean()
     .sort({ _id: 'asc' }) // 排序，根據 _id 升冪排序，(降冪排序用 'desc')
     .then(restaurantsList => res.render('index', { restaurantsList }))
@@ -17,6 +18,7 @@ router.get('/', (req, res) => {
 
 //- 搜尋餐廳
 router.get('/search', (req, res) => {
+  const UserId = req.user._id
   // sort 被賦值為 dropdown box 選擇到的元素的 value
   const { keyword, sort } = req.query
   const keywordLowerCase = req.query.keyword.trim().toLowerCase()
@@ -26,7 +28,7 @@ router.get('/search', (req, res) => {
     return res.redirect('/')
   }
 
-  Restaurant.find()
+  Restaurant.find({ UserId })
     .lean()
     .sort(sort)
     .then(restaurants => {
