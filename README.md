@@ -1,6 +1,8 @@
 # 餐廳清單 3.0
 
-![Index page about Restaurant List](./public/image/餐廳清單3.0.jpg)
+![Index page about Restaurant List](./public/image/餐廳清單4.0.jpg)
+![Login](./public/image/login.jpg)
+![Register](./public/image/register.jpg)
 
 ## 介紹
 
@@ -15,6 +17,8 @@
 - 刪除餐廳
 - 連結餐廳的地址至 Google 地圖
 - 搜尋特定餐廳或類別
+- 使用者可以用 email 或 Facebok 註冊與登入
+- 使用者可以建立並管理專屬的餐廳清單
 
 ## 開始使用
 
@@ -31,36 +35,71 @@
    npm install
    ```
    
-4. 連線到 MongoDB，新增 .env 檔案，檔案中輸入：
+4. 安裝 nodemon 
 
    ```bash
-   MONGODB_URL = <Your own MongoDB connection URL>
+   npm i -g nodemon
+   ```
+
+5. 根據 .env.example 設定環境變數，新增 .env 檔案，檔案中輸入：
+
+   ```bash
+   PORT = 3000
+   SESSION_SECRET = 'ThisIsMySecret'
+   MONGODB_URI = <Your own MongoDB connection URL>
+   FACEBOOK_ID = <Facebook 應用程式編號>
+   FACEBOOK_SECRET = <Facebook 應用程式密鑰>
+   FACEBOOK_CALLBACK = "http://localhost:3000/auth/facebook/callback"
    ```
    
-5. 載入種子資料，輸入：
+6. 載入種子資料，輸入：
 
    ```bash
    npm run seed
    ```
 
-6. 執行專案，輸入：
+7. 在終端機看見以下訊息代表順利執行
+   
+   ```bash
+   mongodb connected!
+   done!
+   ```
+   
+8. 執行專案，輸入：
 
    ```bash
    npm run dev
    ```
 
-7. 在終端機看見此行訊息代表順利執行
+9. 在終端機看見以下訊息代表順利執行
 
    ```bash
    Listening on http://localhost:3000
    ```
    
-8. 打開瀏覽器輸入以下網址
+10. 打開瀏覽器輸入以下網址
 
-   ```bash
-   http://localhost:3000
-   ```
+    ```bash
+    App is listening on http://localhost:3000
+    mongodb connected!
+    ```
+
+11. 終止伺服器
+    
+    ```bash
+    ctrl + c
+    ```
+
+    
+測試帳號
+
+   >- name: user1
+   >- email: <user1@example.com>
+   >- password: 12345678
    
+   >- name: user2
+   >- email: <user2@example.com>
+   >- password: 12345678
 
 
 ## 開發工具
