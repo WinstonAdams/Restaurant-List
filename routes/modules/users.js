@@ -61,7 +61,10 @@ router.post('/register', (req, res) => {
         .then(() => res.redirect('/'))
         .catch(err => console.log(err))
     })
-    .catch(err => console.log(err))
+    .catch(error => {
+      console.log(error)
+      res.render('errorPage', { errorMsg: error.message })
+    })
 })
 
 module.exports = router
