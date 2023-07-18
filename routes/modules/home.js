@@ -22,11 +22,6 @@ router.get('/search', (req, res) => {
   // sort 被賦值為 dropdown box 選擇到的元素的 value
   const { keyword, sort } = req.query
 
-  // 若 keyword 沒有輸入內容，重新導向 / 路由(根目錄)
-  if (!keyword) {
-    return res.redirect('/')
-  }
-
   Restaurant.find({
     UserId,
     $or: [  // $or：符合其中一個條件即可
