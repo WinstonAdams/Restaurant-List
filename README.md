@@ -74,14 +74,14 @@
 9. 在終端機看見以下訊息代表順利執行
 
    ```bash
-   Listening on http://localhost:3000
+   App is listening on http://localhost:3000
+   mongodb connected!
    ```
    
 10. 打開瀏覽器輸入以下網址
 
     ```bash
-    App is listening on http://localhost:3000
-    mongodb connected!
+    http://localhost:3000
     ```
 
 11. 終止伺服器
